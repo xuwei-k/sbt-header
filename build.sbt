@@ -27,7 +27,6 @@ inThisBuild(
     scalacOptions ++= Seq(
       "-unchecked",
       "-deprecation",
-      "-language:_",
       "-encoding",
       "UTF-8",
       "-Ywarn-unused:imports",
@@ -47,6 +46,13 @@ lazy val `sbt-header` =
     .enablePlugins(AutomateHeaderPlugin, SbtPlugin)
     .settings(commonSettings)
     .settings(
+      crossScalaVersions += "3.7.2",
+      pluginCrossBuild / sbtVersion := {
+        scalaBinaryVersion.value match {
+          case "2.12" => sbtVersion.value
+          case _      => "2.0.0-RC4"
+        }
+      },
       libraryDependencies ++= Seq(
         library.scalaTest % Test,
       ),

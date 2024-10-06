@@ -19,22 +19,7 @@ package de.heikoseeberger.sbtheader
 import de.heikoseeberger.sbtheader.CommentStyle.cStyleBlockComment
 import java.nio.charset.StandardCharsets.UTF_8
 import java.nio.file.Files
-import sbt.{
-  AutoPlugin,
-  Compile,
-  Configuration,
-  File,
-  Logger,
-  ScopeFilter,
-  Setting,
-  SettingKey,
-  TaskKey,
-  Test,
-  inAnyConfiguration,
-  inConfig,
-  settingKey,
-  taskKey
-}
+import sbt.{ given, _ }
 import sbt.Defaults.collectFiles
 import sbt.Keys._
 import sbt.internal.util.MessageOnlyException
@@ -68,7 +53,7 @@ object HeaderPlugin extends AutoPlugin {
         "The end of the range of years to specify in the header. Defaults to None (only the `startYear` is used)."
       )
 
-    val headerLicense: SettingKey[Option[License]] =
+    val headerLicense: SettingKey[Option[de.heikoseeberger.sbtheader.License]] =
       settingKey(
         "The license to apply to files; None by default (enabling auto detection from project settings)"
       )
@@ -179,7 +164,7 @@ object HeaderPlugin extends AutoPlugin {
   private def createHeadersTask(
       cacheDirectory: File,
       files: Seq[File],
-      headerLicense: License,
+      headerLicense: de.heikoseeberger.sbtheader.License,
       headerMappings: Map[FileType, CommentStyle],
       headerEmptyLine: Boolean,
       log: Logger
@@ -192,7 +177,7 @@ object HeaderPlugin extends AutoPlugin {
 
   private def createHeaders(
       files: Set[File],
-      headerLicense: License,
+      headerLicense: de.heikoseeberger.sbtheader.License,
       headerMappings: Map[FileType, CommentStyle],
       headerEmptyLine: Boolean,
       log: Logger
@@ -224,7 +209,7 @@ object HeaderPlugin extends AutoPlugin {
 
   private def checkHeadersTask(
       files: Seq[File],
-      headerLicense: License,
+      headerLicense: de.heikoseeberger.sbtheader.License,
       headerMappings: Map[FileType, CommentStyle],
       headerEmptyLine: Boolean,
       log: Logger

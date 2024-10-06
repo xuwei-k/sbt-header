@@ -16,7 +16,7 @@
 
 package de.heikoseeberger.sbtheader
 
-import sbt.{ AutoPlugin, Compile, Configuration, Def, Plugins, Setting, Test, inConfig }
+import sbt.{ AutoPlugin, Compile, Configuration, Def, Plugins, Setting, Test, dependsOn, inConfig }
 import sbt.Keys.compile
 
 /**
