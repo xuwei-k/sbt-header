@@ -36,7 +36,7 @@ import sbt.{
   taskKey
 }
 import sbt.Defaults.collectFiles
-import sbt.Keys._
+import sbt.Keys.*
 import sbt.internal.util.MessageOnlyException
 import sbt.plugins.JvmPlugin
 import sbt.util.FileFunction
@@ -104,11 +104,11 @@ object HeaderPlugin extends AutoPlugin {
     val headerCheckAll: TaskKey[Iterable[File]] =
       taskKey[Iterable[File]]("Check whether files have headers in all configurations")
 
-    def headerSettings(configurations: Configuration*): Seq[Setting[_]] =
-      configurations.foldLeft(List.empty[Setting[_]])(_ ++ inConfig(_)(toBeScopedSettings))
+    def headerSettings(configurations: Configuration*): Seq[Setting[?]] =
+      configurations.foldLeft(List.empty[Setting[?]])(_ ++ inConfig(_)(toBeScopedSettings))
   }
 
-  import autoImport._
+  import autoImport.*
 
   override def trigger = allRequirements
 

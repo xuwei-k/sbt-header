@@ -9,7 +9,7 @@ inThisBuild(
     startYear        := Some(2015),
     licenses += ("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0")),
     homepage := Some(url("https://github.com/sbt/sbt-header")),
-    scmInfo := Some(
+    scmInfo  := Some(
       ScmInfo(
         url("https://github.com/sbt/sbt-header"),
         "git@github.com:sbt/sbt-header.git"
